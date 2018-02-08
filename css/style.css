@@ -1,0 +1,33 @@
+body{
+  width: 100%;
+  height: 100vh;
+}
+
+p{
+  font-family: 'Roboto', sans-serif;
+  color: white;
+  text-align: center;
+  padding-top: 10%;
+}
+
+.ciel{
+  width: 100%;
+  height: 70%;
+  background-color: #1e3799;
+}
+
+.ville{
+  width: 100%;
+  height: 10%;
+  background-color: #48dbfb;
+}
+
+  .ville .row {
+    margin: 0;
+  }
+
+.mer{
+  width: 100%;
+  height: 20%;
+  background-color: #0abde3;
+}
