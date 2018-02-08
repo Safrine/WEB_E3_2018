@@ -5,6 +5,7 @@ body{
 
 p{
   font-family: 'Roboto', sans-serif;
+  font-size: 50px;
   color: white;
   text-align: center;
   padding-top: 10%;
@@ -24,6 +25,15 @@ p{
 
   .ville .row {
     margin: 0;
+  }
+
+  .ville-css, .ville-js{
+    padding: 10px;
+  }
+
+  .ville-css .ville-css-div, .ville-js .ville-js-div{
+    background-color: blue;
+    height: 10px;
   }
 
 .mer{
