@@ -18,18 +18,6 @@ body{
   }
 }
 
-@keyframes slideInLeft {
-  from {
-    -webkit-transform: translate3d(-100%, 0, 0);
-    transform: translate3d(-100%, 0, 0);
-    visibility: visible;
-  }
-
-  to {
-    -webkit-transform: translate3d(0, 0, 0);
-    transform: translate3d(0, 0, 0);
-  }
-}
 
 h1{
   font-size: 50px;
@@ -37,44 +25,14 @@ h1{
   text-align: center;
   padding-top: 5%;
 
-  -webkit-animation-name: slideInLeft;
-  animation-name: slideInLeft;
 }
 
-
-@-webkit-keyframes slideInRight {
-  from {
-    -webkit-transform: translate3d(100%, 0, 0);
-    transform: translate3d(100%, 0, 0);
-    visibility: visible;
-  }
-
-  to {
-    -webkit-transform: translate3d(0, 0, 0);
-    transform: translate3d(0, 0, 0);
-  }
-}
-
-@keyframes slideInRight {
-  from {
-    -webkit-transform: translate3d(100%, 0, 0);
-    transform: translate3d(100%, 0, 0);
-    visibility: visible;
-  }
-
-  to {
-    -webkit-transform: translate3d(0, 0, 0);
-    transform: translate3d(0, 0, 0);
-  }
-}
 
 h2{
   font-size: 40px;
   color: white;
   text-align: center;
   padding-top: 20px;
-  -webkit-animation-name: slideInRight;
-  animation-name: slideInRight;
 }
 
 .ciel{
@@ -82,11 +40,6 @@ h2{
   height: 70%;
   background-color: #1e3799;
 }
-  .ciel-css-logo, .ciel-js-logo, .ciel-js2-logo, .ciel-jquery-logo, .ciel-ajax-logo, .ciel-projet-logo{
-    width: 180px;
-    height: 180px;
-    margin-top: 20px;
-  }
 
   .ciel-css-button{
     background-color: #ecf0f1;
@@ -101,7 +54,7 @@ h2{
 
 .ville{
   width: 100%;
-  height: 10%;
+  height: 15%;
   background-color: #48dbfb;
 }
 
