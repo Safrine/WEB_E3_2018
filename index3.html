@@ -18,13 +18,111 @@
   </head>
 
   <body>
-    <div class="container">
+    <div class="ciel">
       <h1 class="slideInLeft animated">Safrine Cheickalavoudine</h1>
       <h2 class="slideInRight animated">TP WEB</h2>
+
     </div>
 
+    <div class="herbe">
+      <img class="tuyau" src="image/Tuyau.png" alt="">
 
+      <img id="toad-normal" class="toad" src="image/toad-normal.png" alt="">
+      <img id="toad-parle" class="toad" src="image/toad-parle.png" alt="">
 
+      <div class="caisse caisse-css" id="caisse-css">
+      </div>
+      <div class="caisse caisse-js" id="caisse-js">
+      </div>
+      <div class="caisse caisse-js2" id="caisse-js2">
+      </div>
+      <div class="caisse caisse-jquery" id="caisse-jquery">
+      </div>
+      <div class="caisse caisse-ajax" id="caisse-ajax">
+      </div>
+      <div class="caisse caisse-projet" id="caisse-projet">
+      </div>
+    </div>
+
+    <div class="terre">
+
+    </div>
+
+    <div id="descriptionBox" class="descriptionBox">
+      <img id="close" class="close-logo" src="image/close.png" alt="">
+
+      <h3 id="title"></h3>
+      <p id="description"></p>
+
+      <button id="open-button" class="btn btn-info" type="button" name="button">Ouvrir</button>
+    </div>
+
+    <script type="text/javascript">
+      $(document).ready(function() {
+
+        var title = "";
+        var textedescription = "";
+
+        $('#close').click(function(){
+          hideToadTalk();
+        });
+
+        $('#caisse-css').click(function(){
+          title = "TP CSS";
+          textedescription = "Blabla";
+          showToadTalk(title, textedescription);
+        });
+
+        $('#caisse-js').click(function(){
+          title = "TP JS";
+          textedescription = "Blabla";
+          showToadTalk(title, textedescription);
+        });
+
+        $('#caisse-js2').click(function(){
+          title = "TP JS2";
+          textedescription = "Blabla";
+          showToadTalk(title, textedescription);
+        });
+
+        $('#caisse-jquery').click(function(){
+          title = "TP JQUERY";
+          textedescription = "Blabla";
+          showToadTalk(title, textedescription);
+        });
+
+        $('#caisse-ajax').click(function(){
+          title = "TP AJAX";
+          textedescription = "Blabla";
+          showToadTalk(title, textedescription);
+        });
+
+        $('#caisse-projet').click(function(){
+          title = "PROJET PERSONNEL";
+          textedescription = "Blabla";
+          showToadTalk(title, textedescription);
+        });
+
+        function showToadTalk(title, textedescription){
+          hideToadTalk();
+          $('#toad-normal').hide();
+          $('#toad-parle').show();
+          description(title, textedescription);
+          $('#descriptionBox').show();
+          event.stopPropagation();
+        }
+
+        function hideToadTalk(){
+          $('#toad-normal').show();
+          $('#toad-parle').hide();
+          $('#descriptionBox').hide();
+        }
+
+        function description(title, textedescription){
+          $('#title').html(title);
+          $('#description').html(textedescription);
+        }
+      });
     </script>
   </body>
 </html>
