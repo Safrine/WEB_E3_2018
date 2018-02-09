@@ -130,6 +130,7 @@ h2{
   width: 600px;
   display: none;
   text-align: center;
+  transition: 2s;
 }
 
   .close-logo{
