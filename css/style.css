@@ -1,14 +1,80 @@
 body{
   width: 100%;
   height: 100vh;
+  font: 100%/1.5 "Roboto", Verdana, sans-serif;
 }
 
-p{
-  font-family: 'Roboto', sans-serif;
+
+@-webkit-keyframes slideInLeft {
+  from {
+    -webkit-transform: translate3d(-100%, 0, 0);
+    transform: translate3d(-100%, 0, 0);
+    visibility: visible;
+  }
+
+  to {
+    -webkit-transform: translate3d(0, 0, 0);
+    transform: translate3d(0, 0, 0);
+  }
+}
+
+@keyframes slideInLeft {
+  from {
+    -webkit-transform: translate3d(-100%, 0, 0);
+    transform: translate3d(-100%, 0, 0);
+    visibility: visible;
+  }
+
+  to {
+    -webkit-transform: translate3d(0, 0, 0);
+    transform: translate3d(0, 0, 0);
+  }
+}
+
+h1{
   font-size: 50px;
   color: white;
   text-align: center;
-  padding-top: 10%;
+  padding-top: 5%;
+
+  -webkit-animation-name: slideInLeft;
+  animation-name: slideInLeft;
+}
+
+
+@-webkit-keyframes slideInRight {
+  from {
+    -webkit-transform: translate3d(100%, 0, 0);
+    transform: translate3d(100%, 0, 0);
+    visibility: visible;
+  }
+
+  to {
+    -webkit-transform: translate3d(0, 0, 0);
+    transform: translate3d(0, 0, 0);
+  }
+}
+
+@keyframes slideInRight {
+  from {
+    -webkit-transform: translate3d(100%, 0, 0);
+    transform: translate3d(100%, 0, 0);
+    visibility: visible;
+  }
+
+  to {
+    -webkit-transform: translate3d(0, 0, 0);
+    transform: translate3d(0, 0, 0);
+  }
+}
+
+h2{
+  font-size: 40px;
+  color: white;
+  text-align: center;
+  padding-top: 20px;
+  -webkit-animation-name: slideInRight;
+  animation-name: slideInRight;
 }
 
 .ciel{
@@ -16,6 +82,22 @@ p{
   height: 70%;
   background-color: #1e3799;
 }
+  .ciel-css-logo, .ciel-js-logo, .ciel-js2-logo, .ciel-jquery-logo, .ciel-ajax-logo, .ciel-projet-logo{
+    width: 180px;
+    height: 180px;
+    margin-top: 20px;
+  }
+
+  .ciel-css-button{
+    background-color: #ecf0f1;
+    border-radius: 10px;
+    width: 50%;
+    margin: 0 auto;
+    text-align: center;
+    vertical-align: middle;
+    cursor: pointer;
+    height: 40px;
+  }
 
 .ville{
   width: 100%;
@@ -27,14 +109,16 @@ p{
     margin: 0;
   }
 
-  .ville-css, .ville-js{
+  .ville-css, .ville-js, .ville-js2, .ville-jquery, .ville-ajax, .ville-projet{
     padding: 10px;
   }
 
-  .ville-css .ville-css-div, .ville-js .ville-js-div{
-    background-color: blue;
+  .ville-css-div, .ville-js-div, .ville-js2-div, .ville-jquery-div, .ville-ajax-div, .ville-projet-div{
+    background-color: #ecf0f1;
     height: 10px;
   }
+
+
 
 .mer{
   width: 100%;
