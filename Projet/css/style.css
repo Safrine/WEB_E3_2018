@@ -1,0 +1,30 @@
+body{
+  width: 100%;
+  font: 100%/1.5 "Roboto", Verdana, sans-serif;
+  background-color: black;
+}
+
+h1{
+  position: absolute;
+  top: 10px;
+  left: 50%;
+  transform: translateX(-50%);
+  color: white;
+}
+
+.tamagochi{
+  background-image: url('../image/tam-back.png');
+  background-size: contain;
+  background-repeat: no-repeat;
+  height: 500px;
+  width: 500px;
+  left: 50%;
+}
+
+.tam{
+  position: absolute;
+  width : 200px;
+  height: auto;
+  bottom: 0px;
+  right: 0px;
+}

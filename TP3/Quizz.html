@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html>
+  <meta charset="UTF-8">
+  <body>
+
+    <h2>QUIZ de la plus gentille</h2>
+
+    <p id="question"></p>
+    <button id="btn1" type="button" value="vrai" onclick="buttonClick(this.value)">VRAI</button>
+    <button id="btn2" type="button" value="faux" onclick="buttonClick(this.value)">FAUX</button>
+
+    <p id="score"></p>
+
+    <canvas id="canvas"></canvas>
+
+    <script type="text/javascript">
+      var obj1 = {
+        qst: "Le soleil de couche à l'Ouest",
+        expt: "vrai"
+      };
+
+      var obj2 = {
+        qst: "1 + 1 = 3",
+        expt: "faux"
+      };
+
+      var obj3 = {
+        qst: "Le chocolat c'est excellent",
+        expt: "vrai"
+      };
+
+      var tab = [obj1, obj2, obj3];
+
+      var cptCorrect = 0;
+      var cptIncorrect = 0;
+
+      var qstNumber = 0;
+
+      var start_angle;
+      var slice_angle;
+
+      displayQst();
+      displayScore();
+
+      //--------QUIZ--------
+      function buttonClick(value){
+        console.log(qstNumber);
+        console.log(value);
+
+        if(qstNumber == tab.length-1){
+          test(value);
+          document.getElementById('btn1').style.visibility='hidden';
+          document.getElementById('btn2').style.visibility='hidden';
+          document.getElementById('question').innerHTML = "Quizz terminé !! Voici votre score : ";
+          document.getElementById('score').innerHTML = cptCorrect + "/" + tab.length;
+          pieChart(cptCorrect, cptIncorrect);
+          return;
+        }
+
+        else{
+          test(value);
+        }
+
+      }
+
+      function test(value){
+        if(value == tab[qstNumber].expt){
+          cptCorrect++;
+          console.log("correct : " + cptCorrect);
+          qstNumber++;
+          displayQst()
+          displayScore();;
+        }
+        else{
+          cptIncorrect++;
+          qstNumber++;
+          displayQst();
+          displayScore();
+        }
+      }
+
+      //--------AFFICHAGE--------
+      function displayQst(){
+        if(qstNumber < tab.length){
+          document.getElementById("question").innerHTML = tab[qstNumber].qst;
+        }
+      }
+
+      function displayScore(){
+        document.getElementById('score').innerHTML = "Nb réponse(s) correcte(s) : " + cptCorrect + "<br> Nb réponse(s) incorrecte(s) : " + cptIncorrect;
+      }
+
+      //--------DIAGRAMME--------
+      function pieChart(ok, ko){
+        console.log("ok : " + ok);
+        console.log("ko : " + ko);
+        var canvas = document.getElementById("canvas");
+        var context = canvas.getContext('2d');
+
+        canvas.width = 300;
+        canvas.height = 300;
+
+        //bonne reponse
+        //slice angle = 2 * PI * category value / total value
+        start_angle = 0;
+        slice_angle = 2*Math.PI*ok / (tab.length);
+
+        drawPieSlice(
+          context,
+          canvas.width/2,
+          canvas.height/2,
+          Math.min(canvas.width/2, canvas.height/2),
+          start_angle,
+          start_angle + slice_angle,
+          '#a7db9f');
+
+        //mauvaise reponse
+        start_angle += slice_angle;
+        slice_angle = 2*Math.PI*ko / (tab.length);
+
+        drawPieSlice(
+          context,
+          canvas.width/2,
+          canvas.height/2,
+          Math.min(canvas.width/2, canvas.height/2),
+          start_angle,
+          start_angle + slice_angle,
+          '#e79299');
+
+      }
+
+      //trace la ligne
+      /*function drawLine(ctx, startX, startY, endX, endY){
+        ctx.beginPath();
+        ctx.moveTo(startX, startY); //starting point
+        ctx.lineTo(endX, endY); //ending point
+        ctx.stroke();
+      }
+
+      //tracer le cercle
+      function drawArc(ctx, centerX, centerY, radius, startAngle, endAngle){
+        ctx.beginPath();
+        ctx.arc(centerX, centerY, radius, startAngle, endAngle);
+        //radius : coordonnée X du end point de la ligne
+        ctx.stroke();
+      }*/
+
+      //tracer une portion du diagramme
+      function drawPieSlice(ctx,centerX, centerY, radius, startAngle, endAngle, color){
+          ctx.fillStyle = color;
+          ctx.beginPath();
+          ctx.moveTo(centerX,centerY);
+          ctx.arc(centerX, centerY, radius, startAngle, endAngle);
+          ctx.closePath();
+          ctx.fill();
+      }
+
+
+
+    </script>
+  </body>
+
+</html>

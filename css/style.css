@@ -1,80 +1,152 @@
 body{
   width: 100%;
-  height: 100vh;
   font: 100%/1.5 "Roboto", Verdana, sans-serif;
 }
-
-
-@-webkit-keyframes slideInLeft {
-  from {
-    -webkit-transform: translate3d(-100%, 0, 0);
-    transform: translate3d(-100%, 0, 0);
-    visibility: visible;
-  }
-
-  to {
-    -webkit-transform: translate3d(0, 0, 0);
-    transform: translate3d(0, 0, 0);
-  }
-}
-
 
 h1{
   font-size: 50px;
   color: white;
-  text-align: center;
   padding-top: 5%;
-
+  padding-left: 3%;
 }
 
 
 h2{
   font-size: 40px;
   color: white;
-  text-align: center;
   padding-top: 20px;
+  padding-left: 3%;
 }
 
 .ciel{
-  width: 100%;
-  height: 70%;
-  background-color: #1e3799;
+  background-image: url('../image/mario_back.jpg');
+  background-repeat:no-repeat;
+  background-size: cover;
+  background-position: center bottom;
+  display:block;
+	height:80vh;
+	width:100%;
+	margin-right:auto;
+	margin-left:auto;
+	overflow:hidden;
 }
 
-  .ciel-css-button{
-    background-color: #ecf0f1;
-    border-radius: 10px;
-    width: 50%;
-    margin: 0 auto;
-    text-align: center;
-    vertical-align: middle;
+
+.herbe{
+  background-image: url('../image/Mario_herbe.png');
+  background-repeat: repeat-x;
+  background-size: contain;
+  height: 64px;
+  position: relative;
+}
+
+  .tuyau{
+    position: absolute;
+    right: 0;
+    top: -128px;
+  }
+
+  .toad{
+    position: absolute;
+    height: 200px;
+    top: -190px;
+  }
+
+  #toad-parle{
+    display: none;
+  }
+
+  .caisse{
+    background-image: url('../image/hatena_anime.png');
+    background-position: 0px 0px;
+    position: absolute;
+    height: 64px;
+    width: 64px;
+    top: -400px;
+    animation: caisseAnim 2s infinite step-end;
+    animation-direction: reverse;
     cursor: pointer;
+  }
+
+  @keyframes caisseAnim {
+    0%  {background-position: 0px 0px}
+    6%  {background-position: 0px 64px}
+    13%  {background-position: 0px 128px}
+    19%  {background-position: 0px 192px}
+    25%  {background-position: 0px 256px}
+    29%  {background-position: 0px 320px}
+    38%  {background-position: 0px 384px}
+    44%  {background-position: 0px 448px}
+    50%  {background-position: 0px 512px}
+    56%  {background-position: 0px 576px}
+    63%  {background-position: 0px 640px}
+    69%  {background-position: 0px 704px}
+    75%  {background-position: 0px 768px}
+    79%  {background-position: 0px 832px}
+    88%  {background-position: 0px 896px}
+    94%  {background-position: 0px 960px}
+    100%  {background-position: 0px 0px}
+  }
+
+  .caisse-css{
+    left: 40%;
+  }
+
+  .caisse-js{
+    left: 50%;
+  }
+
+  .caisse-js2{
+    left: 60%;
+  }
+
+  .caisse-jquery{
+    left: 70%;
+  }
+
+  .caisse-ajax{
+    left: 80%;
+  }
+
+  .caisse-projet{
+    left: 90%;
+  }
+
+.terre{
+  background-image: url('../image/Mario_terre.png');
+  background-repeat: repeat;
+  background-size: auto;
+  height: calc(20vh - 64px);
+}
+
+.descriptionBox{
+  position: fixed;
+  top: 250px;
+  left: 200px;
+  background-color: rgba(236, 240, 241, 0.8);
+  border-radius: 10px;
+  height: 300px;
+  width: 600px;
+  display: none;
+  text-align: center;
+  transition: 2s;
+}
+
+  .close-logo{
+    position: absolute;
     height: 40px;
+    right: 5px;
+    top: 5px;
+    cursor: pointer;
   }
 
-.ville{
-  width: 100%;
-  height: 15%;
-  background-color: #48dbfb;
-}
-
-  .ville .row {
-    margin: 0;
+  #open-button, #js{
+    position: absolute;
+    bottom: 5px;
+    left: 50%;
+    transform: translateX(-50%);
   }
 
-  .ville-css, .ville-js, .ville-js2, .ville-jquery, .ville-ajax, .ville-projet{
-    padding: 10px;
+  a{
+    color: white;
   }
-
-  .ville-css-div, .ville-js-div, .ville-js2-div, .ville-jquery-div, .ville-ajax-div, .ville-projet-div{
-    background-color: #ecf0f1;
-    height: 10px;
-  }
-
-
-
-.mer{
-  width: 100%;
-  height: 20%;
-  background-color: #0abde3;
-}

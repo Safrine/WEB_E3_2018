@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html>
+  <meta charset="UTF-8">
+  <body>
+
+    <div id="largeur"></div>
+    <div id="hauteur"></div>
+    <div id="taille"></div>
+    <div id="compteur"></div>
+
+    <canvas id="canvas"></canvas>
+
+    <script type="text/javascript">
+      var largeur;
+      var hauteur;
+      var taille;
+      var cpt = 0;
+
+      var tabAire = new Array();
+      var tabCpt = new Array();
+      var tabWidth = new Array();
+      var tabHeight = new Array();
+
+      var widthDiv = document.getElementById("largeur");
+      var heightDiv = document.getElementById("hauteur");
+      var tailleDiv = document.getElementById("taille");
+      var cptDiv = document.getElementById("compteur");
+
+      size();
+      drawGraph();
+
+      window.onresize = function(){
+        cpt++;
+        size();
+        drawGraph();
+      }
+
+      function size(){
+        largeur = window.innerWidth;
+        hauteur = window.innerHeight;
+        taille = largeur*hauteur;
+
+        tabAire.push(taille);
+        tabCpt.push(cpt);
+        tabWidth.push(largeur);
+        tabHeight.push(hauteur);
+
+        widthDiv.innerHTML = largeur;
+        heightDiv.innerHTML = hauteur;
+        tailleDiv.innerHTML = largeur + " x " + hauteur;
+        cptDiv.innerHTML = cpt;
+      }
+
+      function drawGraph(){
+        var canvas = document.getElementById("canvas");
+        var context = canvas.getContext('2d');
+
+        canvas.width = 600;
+        canvas.height = 500;
+
+        var w = canvas.width;
+        var h = canvas.height;
+
+        var screenWidth = screen.width;
+        var screenHeight = screen.height;
+        var screenAire = screenHeight*screenWidth;
+
+        var intervalWidth = w/tabCpt.length;
+        var intervalHeight = h/tabCpt.length;
+
+        context.beginPath();
+        context.rect(0,0, w, h);
+        context.moveTo(0, h - ((w*tabAire[0])/screenAire)); //1e point
+
+        //courbe AIRE
+        for(var i = 1; i < tabCpt.length; i++){
+          var x = (w*tabAire[i])/screenAire;
+          context.lineTo(i*intervalWidth, (h - x));
+        }
+        context.stroke();
+
+        //courbe largeur
+        context.strokeStyle = "red";
+        context.beginPath();
+        context.rect(0,0, w, h);
+        context.moveTo(0, h - ((w*tabWidth[0])/screenAire)); //1e point
+
+        for(var i = 1; i < tabCpt.length; i++){
+          var x = (w*tabWidth[i])/screenAire;
+          context.lineTo(i*intervalWidth, (h - (x*100)));
+        }
+        context.stroke();
+
+        //courbe hauteur
+        context.strokeStyle = "blue";
+        context.beginPath();
+        context.rect(0,0, w, h);
+        context.moveTo(0, h - ((w*tabWidth[0])/screenAire)); //1e point
+
+        for(var i = 1; i < tabCpt.length; i++){
+          var x = (w*tabHeight[i])/screenAire;
+          context.lineTo(i*intervalHeight, (h - (x*100)));
+        }
+        context.stroke();
+
+
+      }
+    </script>
+  </body>
+
+</html>

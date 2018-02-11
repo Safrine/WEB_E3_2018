@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+
+  </head>
+  <body>
+    <div id="container">
+
+
+    </div>
+
+    <script type="text/javascript">
+
+      $(document).ready(function() {
+        var width = $(window).width();
+        var nbDiv = 0;
+        var line = 0;
+        var i = 0; //compteur de div
+        var j = 0; //compteur pour index color
+        var tmp;
+        var colors = ['#FFC312', '#C4E538', '#12CBC4', '#FDA7DF', '#F79F1F', '#A3CB38', '#1289A7', '#D980FA', '#EE5A24', '#009432', '#0652DD', '#9980FA'];
+
+        alert('Appuyer sur Espace pour commencer !');
+
+        $("body").keypress(function(e){
+          tmp = i;
+          if (e.keyCode == 32){ //space
+            $("#container").append("<div class='myduv' id='div" + i + "'><p>" + i + "</p></div>");
+            $("#div" + i).css('background-color', colors[j]);
+            j++;
+
+            $("#div" + i).click(function(){
+              console.log("click!")
+              $(this).remove();
+              //refait un fit pour remettre en place les div
+              line = 0;
+              nbDiv = 0;
+              fit();
+              i = tmp + 1;
+            });
+
+            if(j >= colors.length){
+              j = 0;
+            }
+
+            line = 0;
+            nbDiv = 0;
+            fit();
+            i = tmp + 1;
+          }
+
+        });
+
+
+
+        function fit(){
+          $("#container").css('position', 'absolute');
+          $("#container").children("div").each(function(){
+            $(this).width(width/4);
+            $(this).height(width/4);
+
+            $(this).css('position', 'absolute');
+            $(this).css('font-size', width/12);
+            $(this).css('text-align', 'center');
+
+            if (nbDiv >= 4){
+              nbDiv = 0;
+              line++;
+            }
+
+            if(line%2 == 0){
+              if(nbDiv*width/4 + width/4 <= width){
+                $(this).css("left", nbDiv*(width/4));
+                $(this).css("top", (width/4)*line);
+              }
+              else{
+                $(this).css("left",0);
+                $(this).css("top", (width/4)*(line+1));
+              }
+            }
+
+            else{
+              if(nbDiv*width/4 + (width/8) + width/4 <= width){
+                $(this).css("left", nbDiv*(width/4) + (width/8));
+                $(this).css("top", (width/4)*line);
+              }
+              else{
+                $(this).css("left",0);
+                $(this).css("top", (width/4)*(line+1));
+                nbDiv=0;
+                line++;
+              }
+            }
+            nbDiv+=1;
+
+            i++;
+          });
+        }
+
+        fit();
+      });
+
+
+    </script>
+  </body>
+
+</html>

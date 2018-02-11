@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html>
+  <meta charset="UTF-8">
+  <body>
+
+    <h2>Testez votre degré de compatibilité avec votre moitié ;)</h2>
+
+
+    <input id="pers1" type="text" name="pers1" placeholder="Chocolat"><br>
+    <input id="pers2" type="text" name="pers2" placeholder="Bonbon"><br>
+
+    <button type="button" onclick="main()">Clique moi</button>
+
+    <p id="score"></p>
+
+
+    <script type="text/javascript">
+      function main() {
+        var p1 = document.getElementById("pers1").value;
+        var p2 = document.getElementById("pers2").value;
+        if(p1 === "" || p2 === "" || !allAreLetters(p1) || !allAreLetters(p2)){
+          alert("Faut tout remplir petite patate et QUE avec des lettres !");
+        }
+
+        else{
+          console.log(p1 + " " + p2);
+
+          var sum1 = getSum(p1);
+          var sum2 = getSum(p2);
+          var score = getScore(sum1, sum2);
+
+          display(score);
+        }
+      }
+
+      function allAreLetters(string){
+        return /^[a-zA-Z]*$/g.test(string);
+      }
+
+      function getSum(string){
+        var sum = 0;
+        for (var i = 0; i < string.length; i++){
+          //sum += string.charAt(i).toLowerCase().charCodeAt(0) - 96;
+          sum += string.charCodeAt(i);
+        }
+        return sum;
+      }
+
+      function getScore(sum1, sum2){
+        return 100 * Math.min(sum1, sum2) / Math.max(sum1, sum2);
+      }
+
+      function display(score){
+        var string = "Le score pour les deux noms est de " + score + "%";
+        if(score < 10){
+          string += " ...... C'est la friendzone assurée mwahaha";
+        }
+        document.getElementById('score').innerHTML = string;
+      }
+
+    </script>
+  </body>
+
+</html>

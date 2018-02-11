@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html>
+  <meta charset="UTF-8">
+  <body onkeydown="update(event)">
+    <canvas id="canvas"></canvas>
+
+    <script type="text/javascript">
+      var canvas;;
+      var context;
+      var w;
+      var h;
+
+      var ballTab = [];
+
+      initCanvas();
+      randomBall();
+      var inter = setInterval(function() {move(ballTab);}, 30);
+      var bool = 0;
+
+      //Canvas vide
+      function initCanvas(){
+        canvas = document.getElementById("canvas");
+        context = canvas.getContext('2d');
+
+        canvas.width = 600;
+        canvas.height = 500;
+
+        w = canvas.width;
+        h = canvas.height;
+        context.beginPath();
+        context.rect(0,0, w, h);
+        context.stroke();
+      }
+
+      //Créer une balle
+      function Ball(x, y, radius, color, dx ,dy) {
+        this.x = x;
+        this.y = y;
+        this.radius = radius;
+        this.color = color;
+        this.dx = dx;
+        this.dy = dy;
+      }
+
+      //Dessiner une balle passé en parametre
+      function draw(ball){
+        context.beginPath();
+        context.arc(ball.x, ball.y, ball.radius, 0, 2*Math.PI);
+        context.fillStyle = ball.color;
+        context.fill();
+      }
+
+      //Créer une balle en random
+      function randomBall(){
+        var randomX = Math.floor((Math.random() * (w - 50 - 50)) + 50);
+        var randomY = Math.floor((Math.random() * (h - 50 - 50)) + 50);
+        var randomRadius = Math.floor((Math.random() * (50 - 10)) + 10);
+
+        var randomColor = ["#FFC312", "#C4E538", "#12CBC4", "#ED4C67", "#9980FA", "#EE5A24"];
+        var index = Math.floor((Math.random() * 5));
+
+        var randomDx = Math.floor((Math.random() * (10 - (-10))) - 10);
+        var randomDy = Math.floor((Math.random() * (10 - (-10))) - 10);
+
+        var ball = new Ball(randomX, randomY, randomRadius, randomColor[index], randomDx, randomDy);
+        ballTab.push(ball);
+        draw(ball);
+      }
+
+      //Créer les 10 balles en random
+      function draw10balls(){
+        for(var i = 0; i < 10; i++){
+          randomBall();
+        }
+      }
+
+      //Déplacer les balles
+      function move(ball){
+        //context.clearRect(0, 0, canvas.width, canvas.height);
+        initCanvas();
+        for(var i = 0; i < ballTab.length; i++){
+          //Faire rebondir la balle
+          if (ballTab[i].x < (0 + ballTab[i].radius) || ballTab[i].x > (w - (0 + ballTab[i].radius))){
+            ballTab[i].dx = -ballTab[i].dx;
+          }
+
+          if (ballTab[i].y < (0 + ballTab[i].radius) || ballTab[i].y > (h - (0 + ballTab[i].radius))){
+            ballTab[i].dy = -ballTab[i].dy;
+          }
+
+          ballTab[i].x += ballTab[i].dx;
+          ballTab[i].y += ballTab[i].dy;
+          draw(ballTab[i]);
+        }
+      }
+
+      function update(event){
+        var keyCode = event.keyCode;
+
+        //Espace
+        if(keyCode == 32){
+          randomBall();
+        }
+
+        //Pause
+        if(keyCode == 80){
+          if(bool == 0){
+            clearInterval(inter);
+            bool = 1;
+          }
+          else{
+            inter = setInterval(function() {move(ballTab);}, 30);
+            bool = 0;
+          }
+        }
+      }
+
+
+    </script>
+  </body>
+
+</html>

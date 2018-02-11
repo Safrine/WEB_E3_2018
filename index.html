@@ -3,7 +3,9 @@
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
     <title>Safrine la plus gentille :)</title>
+
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
     <link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet">
 
@@ -20,82 +22,152 @@
       <h1 class="slideInLeft animated">Safrine Cheickalavoudine</h1>
       <h2 class="slideInRight animated">TP WEB</h2>
 
-      <div class="container">
-        <div class="row">
-          <div class="col-12 col-sm-4 col-md-2 ciel-css">
-            <div class="ciel-css-button">
-              TP CSS
-            </div>
-          </div>
+    </div>
 
-          <div class="col-12 col-sm-4 col-md-2 ciel-js">
-          </div>
+    <div class="herbe">
+      <img class="tuyau" src="image/Tuyau.png" alt="">
 
-          <div class="col-12 col-sm-4 col-md-2 ciel-js2">
-          </div>
+      <img id="toad-normal" class="toad" src="image/toad-normal.png" alt="">
+      <img id="toad-parle" class="toad" src="image/toad-parle.png" alt="">
 
-          <div class="col-12 col-sm-4 col-md-2 ciel-jquery">
-          </div>
-
-          <div class="col-12 col-sm-4 col-md-2 ciel-ajax">
-          </div>
-
-          <div class="col-12 col-sm-4 col-md-2 ciel-projet">
-          </div>
-        </div>
+      <div class="caisse caisse-css" id="caisse-css">
+      </div>
+      <div class="caisse caisse-js" id="caisse-js">
+      </div>
+      <div class="caisse caisse-js2" id="caisse-js2">
+      </div>
+      <div class="caisse caisse-jquery" id="caisse-jquery">
+      </div>
+      <div class="caisse caisse-ajax" id="caisse-ajax">
+      </div>
+      <div class="caisse caisse-projet" id="caisse-projet">
       </div>
     </div>
 
+    <div class="terre">
 
-    <div class="ville">
+    </div>
 
-      <div class="container">
-        <div class="row">
-          <div class="col-12 col-sm-4 col-md-2 ville-css">
-            <div class="ville-css-div">
-            </div>
+    <div id="descriptionBox" class="descriptionBox">
+      <img id="close" class="close-logo" src="image/close.png" alt="">
 
-          </div>
+      <h3 id="title"></h3>
+      <p id="description"></p>
 
-          <div class="col-12 col-sm-4 col-md-2 ville-js">
-            <div class="ville-js-div">
+      <button id="open-button" class="btn btn-info" type="button" name="button"></button>
+      <div id="js">
 
-            </div>
-
-          </div>
-
-          <div class="col-12 col-sm-4 col-md-2 ville-js2">
-            <div class="ville-js2-div">
-
-            </div>
-          </div>
-
-          <div class="col-12 col-sm-4 col-md-2 ville-jquery">
-            <div class="ville-jquery-div">
-
-            </div>
-          </div>
-
-          <div class="col-12 col-sm-4 col-md-2 ville-ajax">
-            <div class="ville-ajax-div">
-
-            </div>
-          </div>
-
-          <div class="col-12 col-sm-4 col-md-2 ville-projet">
-            <div class="ville-projet-div">
-
-            </div>
-          </div>
-        </div>
       </div>
-
-
     </div>
 
-    <div class="mer">
+    <script type="text/javascript">
+      $(document).ready(function() {
 
-    </div>
+        var title = "";
+        var textedescription = "";
+        var lien = "";
 
+        $('#close').click(function(){
+          hideToadTalk();
+          initCaisse();
+        });
+
+        $('#caisse-css').click(function(){
+          initCaisse();
+          $('#open-button').show();
+          title = "TP CSS";
+          textedescription = "Ce TP a été réalisé en suivant exactement le sujet";
+          lien = "TP2/index.html"
+          showToadTalk(title, textedescription, lien);
+          $('#caisse-css').css('background-image', 'url(image/caisse-active.png)');
+        });
+
+        $('#caisse-js').click(function(){
+          initCaisse();
+          title = "TP JS";
+          textedescription = "Ce TP a été réalisé en suivant exactement le sujet";
+          $('#title').html(title);
+          $('#description').html(textedescription);
+          $('#caisse-js').css('background-image', 'url(image/caisse-active.png)');
+
+          $('#open-button').hide();
+          $('#descriptionBox').show();
+
+          $('#js').html('<button class="btn btn-info js-button" type="button" name="button"><a href="TP3/LoveScore.html">LoveScore</a></button><button class="btn btn-info js-button" type="button" name="button"><a href="TP3/Quizz.html">Quizz</a></button><button class="btn btn-info js-button" type="button" name="button"><a href="TP3/Windows.html">Windows</a></button>');
+
+        });
+
+        $('#caisse-js2').click(function(){
+          initCaisse();
+          $('#open-button').show();
+          title = "TP JS2";
+          textedescription = "Ce TP a été réalisé en suivant exactement le sujet";
+          lien = "TP4/JS2.html"
+          showToadTalk(title, textedescription, lien);
+          $('#caisse-js2').css('background-image', 'url(image/caisse-active.png)');
+        });
+
+        $('#caisse-jquery').click(function(){
+          initCaisse();
+          $('#open-button').show();
+          title = "TP JQUERY";
+          textedescription = "Blabla";
+          lien = "TP5/index.html"
+          showToadTalk(title, textedescription, lien);
+          $('#caisse-jquery').css('background-image', 'url(image/caisse-active.png)');
+        });
+
+        $('#caisse-ajax').click(function(){
+          initCaisse();
+          $('#open-button').show();
+          title = "TP AJAX";
+          textedescription = "Ce TP a initialement été réalisé suivant le sujet. Puis une mise en page a été effectuée.";
+          lien = "TP6/flickr_v2.html"
+          showToadTalk(title, textedescription, lien);
+          $('#caisse-ajax').css('background-image', 'url(image/caisse-active.png)');
+        });
+
+        $('#caisse-projet').click(function(){
+          initCaisse();
+          $('#open-button').show();
+          title = "PROJET PERSONNEL";
+          textedescription = "Besoin de vous détendre ? Venez passez du temps avec notre mini Hamtaro !";
+          lien = "Projet/index.html"
+          showToadTalk(title, textedescription, lien);
+          $('#caisse-projet').css('background-image', 'url(image/caisse-active.png)');
+        });
+
+        function showToadTalk(title, textedescription, lien){
+          hideToadTalk();
+          $('#toad-normal').hide();
+          $('#toad-parle').show();
+          description(title, textedescription, lien);
+          $('#descriptionBox').show();
+        }
+
+        function hideToadTalk(){
+          $('#toad-normal').show();
+          $('#toad-parle').hide();
+          $('#descriptionBox').hide();
+        }
+
+        function description(title, textedescription, lien){
+          $('#title').html(title);
+          $('#description').html(textedescription);
+          $('#open-button').html("<a href='" + lien + "'>Ouvrir</a>")
+        }
+
+        function initCaisse(){
+          $('#caisse-css').css('background-image', 'url(image/hatena_anime.png)');
+          $('#caisse-js').css('background-image', 'url(image/hatena_anime.png)');
+          $('#caisse-js2').css('background-image', 'url(image/hatena_anime.png)');
+          $('#caisse-jquery').css('background-image', 'url(image/hatena_anime.png)');
+          $('#caisse-ajax').css('background-image', 'url(image/hatena_anime.png)');
+          $('#caisse-projet').css('background-image', 'url(image/hatena_anime.png)');
+
+          $('#js').html('');
+        }
+      });
+    </script>
   </body>
 </html>
