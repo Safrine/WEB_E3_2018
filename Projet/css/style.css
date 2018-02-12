@@ -1,30 +1,200 @@
+body, html{
+  height: 100%;
+  width: 100%;
+  overflow: hidden;
+}
+
 body{
   width: 100%;
   font: 100%/1.5 "Roboto", Verdana, sans-serif;
-  background-color: black;
+  background:
+    radial-gradient(closest-corner, rgba(16, 47, 70, 0) 60%, rgba(16, 47, 70, 0.26)),
+    linear-gradient(108deg, #26D0CE, #1A2980 90%);
+  display: table;
 }
 
-h1{
+.search{
+  margin: 0.5em 0;
+  font-size: 1.25em;
+  color: #FFF;
+  text-shadow: 0 0 0.5em #000;
   position: absolute;
   top: 10px;
   left: 50%;
   transform: translateX(-50%);
-  color: white;
+  margin-bottom: 5px;
 }
 
-.tamagochi{
-  background-image: url('../image/tam-back.png');
-  background-size: contain;
-  background-repeat: no-repeat;
-  height: 500px;
-  width: 500px;
-  left: 50%;
+.search-tools{
+  display: inline-block;
 }
 
-.tam{
+.search-input{
+  display: block;
+  padding: 0.5em 0.25em;
+  border: none;
+  border-radius: 0.2em;
+  font-size: 1.5em;
+  text-align: center;
+  box-shadow: 0 0 1em 0.25em rgba(0,0,0,0.2);
   position: absolute;
-  width : 200px;
-  height: auto;
-  bottom: 0px;
-  right: 0px;
+  left: 50%;
+  transform: translateX(-80%);
+}
+
+.block{
+  position: absolute;
+  left: 50%;
+  top: 30px;;
+  transform: translateX(-50%);
+}
+
+/*--------------------INPUT CSS------------------------*/
+.cf:before, .cf:after{
+    content:"";
+    display:table;
+}
+
+.cf:after{
+    clear:both;
+}
+
+.cf{
+    zoom:1;
+}
+
+.search-wrapper {
+width: 220px;
+margin: 45px auto 50px auto;
+box-shadow: 0 1px 1px rgba(0, 0, 0, .4) inset, 0 1px 0 rgba(255, 255, 255, .2);
+}
+
+
+input {
+  width: 148px;
+  height: 40px;
+  padding: 10px 5px;
+  float: left;
+  font: bold 15px 'lucida sans', 'trebuchet MS', 'Tahoma';
+  border: 0;
+  background: #EEE;
+  border-radius: 3px 0 0 3px;
+  margin: 10px;
+}
+
+input:focus {
+    outline: 0;
+    background: #fff;
+    box-shadow: 0 0 2px rgba(0,0,0,.8) inset;
+}
+
+input::-webkit-input-placeholder {
+   color: #999;
+   font-weight: normal;
+   font-style: italic;
+}
+
+input:-moz-placeholder {
+    color: #999;
+    font-weight: normal;
+    font-style: italic;
+}
+
+input:-ms-input-placeholder {
+    color: #999;
+    font-weight: normal;
+    font-style: italic;
+}
+
+
+button {
+  overflow: visible;
+  position: relative;
+  float: right;
+  border: 0;
+  padding: 0;
+  cursor: pointer;
+  height: 40px;
+  width: 72px;
+  font: bold 15px/40px 'lucida sans', 'trebuchet MS', 'Tahoma';
+  color: white;
+  text-transform: uppercase;
+  background: #D83C3C;
+  border-radius: 0 3px 3px 0;
+  text-shadow: 0 -1px 0 rgba(0, 0, 0, .3);
+}
+
+button:hover{
+    background: #e54040;
+}
+
+button:active,
+button:focus{
+    background: #c42f2f;
+    outline: 0;
+}
+
+button:before { /* left arrow */
+    content: '';
+    position: absolute;
+    border-width: 8px 8px 8px 0;
+    border-style: solid solid solid none;
+    border-color: transparent #d83c3c transparent;
+    top: 12px;
+    left: -6px;
+}
+
+button:hover:before{
+    border-right-color: #e54040;
+}
+
+button:focus:before,
+button:active:before{
+    border-right-color: #c42f2f;
+}
+
+button::-moz-focus-inner {
+    border: 0;
+    padding: 0;
+}
+
+
+#channelTitle{
+  font-size: 2.5em;
+  color: #FFF;
+  text-shadow: 0 0 0.5em #000;
+  position: absolute;
+  top: 25%;
+  left: 50%;
+  transform: translateX(-50%);
+}
+
+#channelDescription{
+  font-size: 1.5em;
+  color: #FFF;
+  text-shadow: 0 0 0.5em #000;
+  position: absolute;
+  top: 35%;
+  left: 50%;
+  transform: translateX(-50%);
+}
+
+#subscribers{
+  font-size: 7em;
+  color: #FFF;
+  text-shadow: 0 0 0.5em #000;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translateX(-50%);
+}
+
+#abonne{
+  font-size: 1.5em;
+  color: #FFF;
+  text-shadow: 0 0 0.5em #000;
+  position: absolute;
+  top: 80%;
+  left: 50%;
+  transform: translateX(-50%);
 }

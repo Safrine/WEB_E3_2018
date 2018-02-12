@@ -1,44 +1,96 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>YouTube Data API Quickstart</title>
+    <title>Search your Youtuber</title>
     <meta charset='utf-8' />
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
     <script src="https://apis.google.com/js/api.js"></script>
     <script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
   </head>
   <body>
-    <div class="result">
+    <!--<div class="search">
+      Rechercher une chaine YouTube
+    </div>
+    <div class="search-tools">
+      <input class="search-input" type='text'/>
+      <button class="btn btn-success" type="button" name="button">Valider</button>
+    </div>-->
+
+    <div class="search">
+      Rechercher une chaine YouTube
+    </div>
+    <div class="search-wrapper cf block">
+        <input id="input-value" type="text" placeholder="Search..." required name="seach-value">
+        <button id="valider-button" type="button">Valider</button>
+    </div>
+
+
+    <div id="channelTitle">
+
+    </div>
+    <div id="channelDescription">
+
+    </div>
+    <div id="subscribers">
+
+    </div>
+    <div id="abonne">
 
     </div>
 
     <script type="text/javascript">
-    $(document).ready(function() {
-      var options = new Map();
-      options.set("maxResults", "25");
-      options.set("part", "snippet");
-      options.set("q", "adoprixtoxis");
-      options.set("type", "channel");
+      $(document).ready(function() {
+        var options = new Map();
+        var channelName = "";
+        var channelID = "";
 
-      buildAPIYoutube("search", options);
+        $('#valider-button').click(function(){
+          channelName = $('#input-value').val();
+          if (channelName != ""){
+            options.set("maxResults", "1");
+            options.set("part", "snippet");
+            options.set("q", channelName);
+            options.set("type", "channel");
+            buildAPIYoutube("search", options);
+          }
+        })
 
 
+        function buildAPIYoutube(reference, options){
+          var url = "https://www.googleapis.com/youtube/v3/" + reference + "?";
 
-      function buildAPIYoutube(reference, options){
-        var url = "https://www.googleapis.com/youtube/v3/" + reference + "?";
+          for(var key of options){
+            url += key[0] + "=" + key[1] + "&";
+          }
 
-        for(var key of options){
-          url += key[0] + "=" + key[1] + "&";
+          url += "key=" + "AIzaSyD4tGL7r06qKLWLCFEc-PDw1brQml5RPz8";
+
+          $.get(url, function(data) {
+            $("#channelTitle").html(data.items[0].snippet.title);
+            $("#channelDescription").html(data.items[0].snippet.description);
+
+            channelID = data.items[0].snippet.channelId;
+            var url2 = "https://www.googleapis.com/youtube/v3/channels?id=" + channelID + "&part=snippet,contentDetails,statistics&key=AIzaSyD4tGL7r06qKLWLCFEc-PDw1brQml5RPz8";
+
+            $.get(url2, function(data2){
+              var sub = data2.items[0].statistics.subscriberCount;
+              $("#subscribers").html(sub);
+
+              if(sub > 1){
+                $("#abonne").html("abonnés");
+              }
+              else{
+                $("#abonne").html("abonné");
+              }
+            });
+
+          });
+
         }
-
-        url += "key=" + "AIzaSyD4tGL7r06qKLWLCFEc-PDw1brQml5RPz8";
-
-        $.get(url, function(data) {
-          $(".result").html("" + data);
-          console.log(data);
-        });
-
-      }
-    });
+      });
     </script>
 
   </body>
