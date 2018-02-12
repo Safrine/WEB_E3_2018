@@ -73,6 +73,7 @@
             $("#channelDescription").html(data.items[0].snippet.description);
 
             channelID = data.items[0].snippet.channelId;
+            console.log(channelID);
             var url2 = "https://www.googleapis.com/youtube/v3/channels?id=" + channelID + "&part=snippet,contentDetails,statistics&key=AIzaSyD4tGL7r06qKLWLCFEc-PDw1brQml5RPz8";
 
             $.get(url2, function(data2){
@@ -88,6 +89,8 @@
             });
 
           });
+
+          //https://www.googleapis.com/youtube/v3/search?part=snippet&channelId=UCww2zZWg4Cf5xcRKG-ThmXQ&maxResults=10&order=date&type=video&key=AIzaSyD4tGL7r06qKLWLCFEc-PDw1brQml5RPz8
 
         }
       });
