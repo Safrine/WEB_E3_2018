@@ -77,6 +77,12 @@
           }
         });
 
+        $('body').on('click', '.videoMiniature', function(){
+          var id = $(this).attr("data-video");
+          var videoLink = "https://www.youtube.com/embed/" + id;
+          $('#videoShow').attr("src", videoLink);
+        });
+
 
         function buildAPIYoutube(reference, options){
           var searchUrl = "https://www.googleapis.com/youtube/v3/" + reference + "?";
@@ -125,16 +131,13 @@
               $('#videoShow').attr("src", videoLink);
 
               for(var i = 0; i < 10; i++){
-                var playlistData = "<img src='" + videoMiniature[i] + "' alt='' width='200px'></img>"
+                var playlistData = "<img class='videoMiniature' src='" + videoMiniature[i] + "' alt='' data-video='"+ videoIDs[i]+"' width='200px'></img>"
                 $('#playlist').append(playlistData);
               }
 
             });
           });
         }
-
-
-
       });
     </script>
 
