@@ -13,6 +13,20 @@ body{
   display: table;
 }
 
+
+.sidebar{
+  position: absolute;
+  height: 100vh;
+  width: 300px;
+  overflow: auto;
+}
+
+.content{
+  min-height: 100vh;
+  width: 100%;
+  left: 300px;
+}
+
 .search{
   margin: 0.5em 0;
   font-size: 1.25em;
@@ -158,43 +172,32 @@ button::-moz-focus-inner {
     padding: 0;
 }
 
+#channelImage, #channelBanner{
+  width: 100%;
+}
 
 #channelTitle{
-  font-size: 2.5em;
+  font-size: 2em;
   color: #FFF;
   text-shadow: 0 0 0.5em #000;
-  position: absolute;
-  top: 25%;
-  left: 50%;
-  transform: translateX(-50%);
+  padding: 0;
 }
 
 #channelDescription{
-  font-size: 1.5em;
+  font-size: 1em;
   color: #FFF;
   text-shadow: 0 0 0.5em #000;
-  position: absolute;
-  top: 35%;
-  left: 50%;
-  transform: translateX(-50%);
+  text-align: justify;
 }
 
 #subscribers{
-  font-size: 7em;
+  font-size: 4em;
   color: #FFF;
   text-shadow: 0 0 0.5em #000;
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translateX(-50%);
 }
 
 #abonne{
   font-size: 1.5em;
   color: #FFF;
   text-shadow: 0 0 0.5em #000;
-  position: absolute;
-  top: 80%;
-  left: 50%;
-  transform: translateX(-50%);
 }

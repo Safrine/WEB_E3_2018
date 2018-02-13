@@ -3,43 +3,56 @@
   <head>
     <title>Search your Youtuber</title>
     <meta charset='utf-8' />
+
     <link rel="stylesheet" href="css/style.css">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+
     <script src="https://apis.google.com/js/api.js"></script>
     <script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
   </head>
   <body>
-    <!--<div class="search">
-      Rechercher une chaine YouTube
-    </div>
-    <div class="search-tools">
-      <input class="search-input" type='text'/>
-      <button class="btn btn-success" type="button" name="button">Valider</button>
-    </div>-->
 
-    <div class="search">
-      Rechercher une chaine YouTube
-    </div>
-    <div class="search-wrapper cf block">
-        <input id="input-value" type="text" placeholder="Search..." required name="seach-value">
-        <button id="valider-button" type="button">Valider</button>
-    </div>
+    <div class="sidebar">
+      <img id="channelBanner" class="img-fluid" src="" alt="">
+      <div class="row">
+        <div class="col-3 col-sm-3">
+          <img id="channelImage" class="img-fluid" src="" alt="">
+        </div>
+        <div class="col-9 col-sm-9">
+          <div id="channelTitle"></div>
+        </div>
+      </div>
 
 
-    <div id="channelTitle">
 
-    </div>
-    <div id="channelDescription">
 
-    </div>
-    <div id="subscribers">
+      <div id="channelDescription">
 
-    </div>
-    <div id="abonne">
+      </div>
+      <div id="subscribers">
 
+      </div>
+      <div id="abonne">
+
+      </div>
     </div>
+    <div class="content">
+      <div class="search">
+        Rechercher une chaine YouTube
+      </div>
+      <div class="search-wrapper cf block">
+          <input id="input-value" type="text" placeholder="Search..." required name="seach-value">
+          <button id="valider-button" type="button">Valider</button>
+      </div>
+    </div>
+    <!--
+
+
+
+
+    <iframe id="videoShow" width="560" height="315" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe> -->
 
     <script type="text/javascript">
       $(document).ready(function() {
@@ -56,27 +69,29 @@
             options.set("type", "channel");
             buildAPIYoutube("search", options);
           }
-        })
+        });
 
 
         function buildAPIYoutube(reference, options){
-          var url = "https://www.googleapis.com/youtube/v3/" + reference + "?";
+          var searchUrl = "https://www.googleapis.com/youtube/v3/" + reference + "?";
 
           for(var key of options){
-            url += key[0] + "=" + key[1] + "&";
+            searchUrl += key[0] + "=" + key[1] + "&";
           }
 
-          url += "key=" + "AIzaSyD4tGL7r06qKLWLCFEc-PDw1brQml5RPz8";
+          searchUrl += "key=" + "AIzaSyD4tGL7r06qKLWLCFEc-PDw1brQml5RPz8";
 
-          $.get(url, function(data) {
+          $.get(searchUrl, function(data) {
+            $("#channelImage").attr("src", data.items[0].snippet.thumbnails.high.url);
             $("#channelTitle").html(data.items[0].snippet.title);
             $("#channelDescription").html(data.items[0].snippet.description);
 
             channelID = data.items[0].snippet.channelId;
-            console.log(channelID);
-            var url2 = "https://www.googleapis.com/youtube/v3/channels?id=" + channelID + "&part=snippet,contentDetails,statistics&key=AIzaSyD4tGL7r06qKLWLCFEc-PDw1brQml5RPz8";
 
-            $.get(url2, function(data2){
+            var channelUrl = "https://www.googleapis.com/youtube/v3/channels?id=" + channelID + "&part=snippet,contentDetails,statistics,brandingSettings&key=AIzaSyD4tGL7r06qKLWLCFEc-PDw1brQml5RPz8";
+
+            $.get(channelUrl, function(data2){
+              $("#channelBanner").attr("src", data2.items[0].brandingSettings.image.bannerImageUrl);
               var sub = data2.items[0].statistics.subscriberCount;
               $("#subscribers").html(sub);
 
@@ -88,11 +103,24 @@
               }
             });
 
+            var videoUrl = "https://www.googleapis.com/youtube/v3/search?part=snippet&channelId=" + channelID + "&maxResults=10&order=date&type=video&key=AIzaSyD4tGL7r06qKLWLCFEc-PDw1brQml5RPz8";
+
+            $.get(videoUrl, function(data3){
+
+              var videoIDs = new Array();
+              for(var i = 0; i < 10; i++){
+                videoIDs.push(data3.items[i].id.videoId);
+              }
+
+              var videoLink = "https://www.youtube.com/embed/" + videoIDs[0];
+              $('#videoShow').attr("src", videoLink);
+
+            });
           });
-
-          //https://www.googleapis.com/youtube/v3/search?part=snippet&channelId=UCww2zZWg4Cf5xcRKG-ThmXQ&maxResults=10&order=date&type=video&key=AIzaSyD4tGL7r06qKLWLCFEc-PDw1brQml5RPz8
-
         }
+
+
+
       });
     </script>
 
