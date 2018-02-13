@@ -16,7 +16,7 @@
 
     <div class="sidebar">
       <img id="channelBanner" class="img-fluid" src="" alt="">
-      <div class="row">
+      <div class="channelHeader row">
         <div class="col-3 col-sm-3">
           <img id="channelImage" class="img-fluid" src="" alt="">
         </div>
@@ -38,21 +38,27 @@
 
       </div>
     </div>
+
     <div class="content">
-      <div class="search">
-        Rechercher une chaine YouTube
+      <div class="search-tab">
+        <span class="search">
+          Rechercher une chaine YouTube :
+        </span>
+        <span class="search-wrapper cf">
+            <input id="input-value" type="text" placeholder="Search..." required name="seach-value">
+            <button id="valider-button" type="button">Valider</button>
+        </span>
       </div>
-      <div class="search-wrapper cf block">
-          <input id="input-value" type="text" placeholder="Search..." required name="seach-value">
-          <button id="valider-button" type="button">Valider</button>
+
+      <div class="video">
+        <iframe id="videoShow" width="100%" height="100%" style="position:absolute; top:0px" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
       </div>
+
+      <div id="playlist">
+
+      </div>
+
     </div>
-    <!--
-
-
-
-
-    <iframe id="videoShow" width="560" height="315" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe> -->
 
     <script type="text/javascript">
       $(document).ready(function() {
@@ -106,14 +112,22 @@
             var videoUrl = "https://www.googleapis.com/youtube/v3/search?part=snippet&channelId=" + channelID + "&maxResults=10&order=date&type=video&key=AIzaSyD4tGL7r06qKLWLCFEc-PDw1brQml5RPz8";
 
             $.get(videoUrl, function(data3){
+              console.log(data3);
 
               var videoIDs = new Array();
+              var videoMiniature = new Array();
               for(var i = 0; i < 10; i++){
                 videoIDs.push(data3.items[i].id.videoId);
+                videoMiniature.push(data3.items[i].snippet.thumbnails.high.url)
               }
 
               var videoLink = "https://www.youtube.com/embed/" + videoIDs[0];
               $('#videoShow').attr("src", videoLink);
+
+              for(var i = 0; i < 10; i++){
+                var playlistData = "<img src='" + videoMiniature[i] + "' alt='' width='200px'></img>"
+                $('#playlist').append(playlistData);
+              }
 
             });
           });
